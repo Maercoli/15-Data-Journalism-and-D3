@@ -69,8 +69,11 @@ function updateToolTip(chosenXAxis, circlesGroup) {
   if (chosenXAxis === "poverty") {
     label = "Poverty (%):";
   }
+  else if (chosenXAxis == "age") {
+    label = "Age (Median)"
+  }
   else {
-    label = "Obesity:";
+    label = "Obese (%):";
   }
 
   var toolTip = d3.tip()
@@ -102,6 +105,7 @@ d3.csv("healthData.csv").then(function(healthData, err) {
     data.poverty = +data.poverty;
     data.income = +data.income;
     data.obesity = +data.obesity;
+    data.age = +data.age;
   });
 
   // xLinearScale function above csv import
@@ -139,21 +143,28 @@ d3.csv("healthData.csv").then(function(healthData, err) {
 
   // Create group for two x-axis labels
   var labelsGroup = chartGroup.append("g")
-    .attr("transform", `translate(${width / 2}, ${height + 20})`);
+    .attr("transform", `translate(${width / 2}, ${height + 30})`);
 
-  var hairLengthLabel = labelsGroup.append("text")
+  var povertyLabel = labelsGroup.append("text")
     .attr("x", 0)
-    .attr("y", 20)
+    .attr("y", 11)
     .attr("value", "poverty") // value to grab for event listener
     .classed("active", true)
     .text("in Poverty (%)");
 
-  var albumsLabel = labelsGroup.append("text")
+  var obesityLabel = labelsGroup.append("text")
     .attr("x", 0)
-    .attr("y", 40)
+    .attr("y", 30)
     .attr("value", "obesity") // value to grab for event listener
     .classed("inactive", true)
-    .text("Obesity");
+    .text("Obese (%)");
+
+  var ageLabel = labelsGroup.append("text")
+    .attr("x", 0)
+    .attr("y", 47)
+    .attr("value", "age") // value to grab for event listener
+    .classed("inactive", true)
+    .text("Age (Median)");
 
   // append y axis
   chartGroup.append("text")
@@ -194,20 +205,37 @@ d3.csv("healthData.csv").then(function(healthData, err) {
 
         // changes classes to change bold text
         if (chosenXAxis === "obesity") {
-          albumsLabel
+          obesityLabel
             .classed("active", true)
             .classed("inactive", false);
-          hairLengthLabel
+          povertyLabel
+            .classed("active", false)
+            .classed("inactive", true);
+          ageLabel
+            .classed("active", false)
+            .classed("inactive", true);
+        }
+       else if (chosenXAxis === "poverty") {
+          obesityLabel
+            .classed("active", true)
+            .classed("inactive", false);
+          povertyLabel
+            .classed("active", false)
+            .classed("inactive", true);
+          ageLabel
             .classed("active", false)
             .classed("inactive", true);
         }
         else {
-          albumsLabel
+          obesityLabel
             .classed("active", false)
             .classed("inactive", true);
-          hairLengthLabel
+          povertyLabel
             .classed("active", true)
             .classed("inactive", false);
+          ageLabel
+            .classed("active", false)
+            .classed("inactive", true);
         }
       }
     });
