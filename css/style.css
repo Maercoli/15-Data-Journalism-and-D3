@@ -76,4 +76,52 @@ body {
   background: #7aaec4;
   height: 1.5rem;
 }
+/*============= FOOTER =============*/
+footer {
+  background-color: #383838;
+  padding: 1rem 2rem 3rem;
+}
+ 
+footer img {
+  height: 3.5rem;
+  margin: 1.5rem;
+}
+footer p, footer a,
+.socket a {
+  color: white;
+  text-decoration: none;
+}
+ul.social {
+  list-style-type: none;
+  display: flex;
+  max-width: 16rem;
+  margin: 0 auto;
+}
+ul.social li {
+  margin: 0 auto;
+}
+footer .svg-inline--fa {
+  font-size: 2.3rem;
+}
+footer .svg-inline--fa:hover {
+  color: #68a0d2;
+} 
 
+
+/*============= SOCKET =============*/
+.socket {
+  background-color: #222222;
+  border-top: .1rem solid #4981b3;
+}
+
+
+/*============= MEDIA QUERIES =============*/
+
+/* Devices under 1199px (xl) */
+@media (max-width: 1199.98px) {
+
+}
+/* Devices under 768px (md) */
+@media (max-width: 767.98px) {
+
+}
