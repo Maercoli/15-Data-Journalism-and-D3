@@ -1,3 +1,4 @@
+/*============= SCATTER PLOT =============*/
 .tooltip {
   position: absolute;
   width: 135px;
@@ -71,10 +72,18 @@ body {
   color: #4981b3!important;
 }
 
-/*============= TOP BAR HEADER =============*/
+/*============= TOP/MIDDLE BAR HEADER =============*/
 .top-bar {
-  background: #7aaec4;
+  background: linear-gradient(to right, #4981b3, #ac2615);
+  min-height: 0!important;
+  padding: .8rem 0!important;
   height: 1.5rem;
+}
+.middle-bar {
+  background: linear-gradient(to right, #4981b3, #ac2615);
+  min-height: 2!important;
+  padding: 1.5rem 0!important;
+  height: 5rem;
 }
 /*============= FOOTER =============*/
 footer {

@@ -138,10 +138,11 @@ d3.csv("healthData.csv").then(function(healthData, err) {
     .attr("cy", d => yLinearScale(d.income))
     .attr("r", 10)
     .attr("fill", "blue")
-    .attr("opacity", ".5");
+    .attr("opacity", ".5")
+    .text(healthData, d => d.abbr);
 
 
-  // Create group for two x-axis labels
+  // Create group for three x-axis labels
   var labelsGroup = chartGroup.append("g")
     .attr("transform", `translate(${width / 2}, ${height + 30})`);
 
