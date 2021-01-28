@@ -33,14 +33,14 @@ function xScale(healthData, chosenXAxis) {
     .domain([d3.min(healthData, d => d[chosenXAxis]) * 0.8,
       d3.max(healthData, d => d[chosenXAxis]) * 1.2
     ])
-    .range([0, width]);
+    .range([height, 0]);
 
   return xLinearScale;
 }
 
 // function used for updating xAxis var upon click on axis label
 function renderAxes(newXScale, xAxis) {
-  var bottomAxis = d3.axisBottom(newXScale);
+  var bottomAxis = d3.axisLeft(newXScale);
 
   xAxis.transition()
     .duration(1000)
@@ -55,7 +55,7 @@ function renderCircles(circlesGroup, newXScale, chosenXAxis) {
 
   circlesGroup.transition()
     .duration(1000)
-    .attr("cx", d => newXScale(d[chosenXAxis]))
+    .attr("cx", d => newXScale(d[chosenXAxis]));
 
   return circlesGroup;
 }
@@ -137,9 +137,8 @@ d3.csv("healthData.csv").then(function(healthData, err) {
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
     .attr("cy", d => yLinearScale(d.income))
     .attr("r", 10)
-    .attr("fill", "blue")
+    .attr("fill", "pink")
     .attr("opacity", ".5");
-
 
   // Create group for two x-axis labels
   var labelsGroup = chartGroup.append("g")
@@ -158,7 +157,7 @@ d3.csv("healthData.csv").then(function(healthData, err) {
     .attr("value", "obesity") // value to grab for event listener
     .classed("inactive", true)
     .text("Obese (%)");
-    
+
   var ageLabel = labelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 47)
