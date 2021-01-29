@@ -1,4 +1,4 @@
-var svgWidth = 980;
+var svgWidth = 960;
 var svgHeight = 500;
 
 var margin = {
@@ -28,11 +28,11 @@ var chosenXAxis = "poverty";
 var chosenYAxis = "smokes";
 
 // function used for updating x-scale var upon click on axis label
-function xScale(healthData, chosenXAxis) {
+function xScale(timesData, chosenXAxis) {
   // create scales
   var xLinearScale = d3.scaleLinear()
-    .domain([d3.min(healthData, d => d[chosenXAxis]) * 0.8,
-      d3.max(healthData, d => d[chosenXAxis]) * 1.2
+    .domain([d3.min(timesData, d => d[chosenXAxis]) * 0.8,
+      d3.max(timesData, d => d[chosenXAxis]) * 1.2
     ])
     .range([0, width]);
 
@@ -40,11 +40,11 @@ function xScale(healthData, chosenXAxis) {
 }
 
 // function used for updating y-scale var upon click on axis label
-function yScale(healthData, chosenYAxis) {
+function yScale(timesData, chosenYAxis) {
   // create scales
   var yLinearScale = d3.scaleLinear()
-    .domain([d3.min(healthData, d => d[chosenYAxis]) * 0.8,
-      d3.max(healthData, d => d[chosenYAxis]) * 1.2
+    .domain([d3.min(timesData, d => d[chosenYAxis]) * 0.8,
+      d3.max(timesData, d => d[chosenYAxis]) * 1.2
     ])
     .range([height, 0]);
 
@@ -165,11 +165,11 @@ function updateYToolTip(chosenYAxis, circlesGroup) {
   return circlesGroup;
 }
 // Retrieve data from the CSV file and execute everything below
-d3.csv("healthData.csv").then(function(healthData, err) {
+d3.csv("/assets/data/timesData.csv").then(function(timesData, err) {
   if (err) throw err;
 
   // parse data
-  healthData.forEach(function(data) {
+  timesData.forEach(function(data) {
     data.poverty = +data.poverty;
     data.smokes = +data.smokes;
     data.healthcare = +data.healthcare;
@@ -179,8 +179,8 @@ d3.csv("healthData.csv").then(function(healthData, err) {
   });
 
   // Call LinearScale functions above csv import
-  var xLinearScale = xScale(healthData, chosenXAxis);
-  var yLinearScale = yScale(healthData, chosenYAxis);
+  var xLinearScale = xScale(timesData, chosenXAxis);
+  var yLinearScale = yScale(timesData, chosenYAxis);
 
   // Create initial axis functions
   var bottomAxis = d3.axisBottom(xLinearScale);
@@ -199,13 +199,13 @@ d3.csv("healthData.csv").then(function(healthData, err) {
 
   // append initial circles
   var circlesGroup = chartGroup.selectAll("circle")
-    .data(healthData)
+    .data(timesData)
     .enter()
     .append("circle")
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
     .attr("cy", d => yLinearScale(d[chosenYAxis]))
     .attr("r", 10)
-    .attr("fill", "pink")
+    .attr("fill", "blue")
     .attr("opacity", ".5");
 
   // Create group for three x-axis labels
@@ -233,15 +233,6 @@ d3.csv("healthData.csv").then(function(healthData, err) {
     .classed("inactive", true)
     .text("Age (Median)");
 
-  // // append y axis
-  // chartGroup.append("text")
-  //   .attr("transform", "rotate(-90)")
-  //   .attr("y", 0 - margin.left + 30)
-  //   .attr("x", 0 - (height / 2))
-  //   .attr("dy", "1em")
-  //   .classed("axis-text", true)
-  //   .text("Avg Income");
-
   // Create group for three y-axis labels
   var labelsYGroup = chartGroup.append("g")
   .attr("transform", `translate(${width / 2}, ${height + 30})`);
@@ -249,15 +240,15 @@ d3.csv("healthData.csv").then(function(healthData, err) {
   var incomeLabel = labelsYGroup.append("text")
   .attr("transform", "rotate(-90)")
   .attr("x", 220 )
-  .attr("y", -505)
+  .attr("y", -495)
   .attr("value", "income") // value to grab for event listener
-  .classed("active", true)
+  .classed("inactive", true)
   .text("Household Income (Median)");
 
   var healthcareLabel = labelsYGroup.append("text")
   .attr("transform", "rotate(-90)")
   .attr("x", 220)
-  .attr("y", -475)
+  .attr("y", -465)
   .attr("value", "healthcare") // value to grab for event listener
   .classed("inactive", true)
   .text("Healthcare");
@@ -265,22 +256,10 @@ d3.csv("healthData.csv").then(function(healthData, err) {
   var smokesLabel = labelsYGroup.append("text")
   .attr("transform", "rotate(-90)")
   .attr("x", 220)
-  .attr("y", -490)
+  .attr("y", -480)
   .attr("value", "smokes") // value to grab for event listener
   .classed("inactive", true)
   .text("Smokes");
-
-  // append y axis
-  // chartGroup.append("text")
-  // .attr("transform", "rotate(-90)")
-  // .attr("y", 0 - margin.left + 30)
-  // .attr("x", 0 - (height / 2))
-  // .attr("dy", "1em")
-  // .classed("axis-text", true)
-  // .text("Avg Income");
-
-
-
 
   // updateToolTip function above csv import
   var circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
@@ -300,7 +279,7 @@ d3.csv("healthData.csv").then(function(healthData, err) {
 
         // functions here found above csv import
         // updates x scale for new data
-        xLinearScale = xScale(healthData, chosenXAxis);
+        xLinearScale = xScale(timesData, chosenXAxis);
 
         // updates x axis with transition
         xAxis = renderAxes(xLinearScale, xAxis);
@@ -360,13 +339,13 @@ d3.csv("healthData.csv").then(function(healthData, err) {
       // console.log(chosenYAxis)
 
       // functions here found above csv import
-      // updates x scale for new data
-      yLinearScale = yScale(healthData, chosenYAxis);
+      // updates y scale for new data
+      yLinearScale = yScale(timesData, chosenYAxis);
 
-      // updates x axis with transition
+      // updates y axis with transition
       yAxis = renderYAxes(yLinearScale, yAxis);
 
-      // updates circles with new x values
+      // updates circles with new y values
       circlesGroup = renderYCircles(circlesGroup, yLinearScale, chosenYAxis);
 
       // updates tooltips with new info
@@ -384,13 +363,13 @@ d3.csv("healthData.csv").then(function(healthData, err) {
           .classed("active", false)
           .classed("inactive", true);
       }
-     else if (chosenXAxis === "healthcare") {
-        incomeLabel
-          .classed("active", false)
-          .classed("inactive", true);
+     else if (chosenYAxis === "healthcare") {
         healthcareLabel
           .classed("active", true)
           .classed("inactive", false);
+        incomeLabel
+          .classed("active", false)
+          .classed("inactive", true);
         smokesLabel
           .classed("active", false)
           .classed("inactive", true);

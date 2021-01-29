@@ -27,11 +27,11 @@ var chartGroup = svg.append("g")
 var chosenXAxis = "poverty";
 
 // function used for updating x-scale var upon click on axis label
-function xScale(healthData, chosenXAxis) {
+function xScale(timesData, chosenXAxis) {
   // create scales
   var xLinearScale = d3.scaleLinear()
-    .domain([d3.min(healthData, d => d[chosenXAxis]) * 0.8,
-      d3.max(healthData, d => d[chosenXAxis]) * 1.2
+    .domain([d3.min(timesData, d => d[chosenXAxis]) * 0.8,
+      d3.max(timesData, d => d[chosenXAxis]) * 1.2
     ])
     .range([0, width]);
 
@@ -96,12 +96,12 @@ function updateToolTip(chosenXAxis, circlesGroup) {
 }
 
 // Retrieve data from the CSV file and execute everything below
-d3.csv("healthData.csv").then(function(healthData, err) {
+d3.csv("timesData.csv").then(function(timesData, err) {
   if (err) throw err;
 
   // Step 1: Parse Data/Cast as numbers
   // ===================================
-  healthData.forEach(function(data) {
+  timesData.forEach(function(data) {
     data.poverty = +data.poverty;
     data.income = +data.income;
     data.obesity = +data.obesity;
@@ -111,11 +111,11 @@ d3.csv("healthData.csv").then(function(healthData, err) {
   // Step 2: Create scale functions
   // ==================================
   // xLinearScale function above csv import
-  var xLinearScale = xScale(healthData, chosenXAxis);
+  var xLinearScale = xScale(timesData, chosenXAxis);
 
   // Create y scale function
   var yLinearScale = d3.scaleLinear()
-    .domain([35000, d3.max(healthData, d => d.income)])
+    .domain([35000, d3.max(timesData, d => d.income)])
     .range([height, 0]);
 
   // Step 3: Create axis functions
@@ -140,7 +140,7 @@ d3.csv("healthData.csv").then(function(healthData, err) {
   // ====================================
   // append initial circles
   var circlesGroup = chartGroup.selectAll("circle")
-    .data(healthData)
+    .data(timesData)
     .enter()
     .append("circle")
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
@@ -148,7 +148,7 @@ d3.csv("healthData.csv").then(function(healthData, err) {
     .attr("r", 10)
     .attr("fill", "blue")
     .attr("opacity", ".5")
-    .text(healthData, d => d.abbr);
+    .text(timesData, d => d.abbr);
 
   // Create group for three x-axis labels
   var labelsGroup = chartGroup.append("g")
@@ -203,7 +203,7 @@ d3.csv("healthData.csv").then(function(healthData, err) {
 
         // functions here found above csv import
         // updates x scale for new data
-        xLinearScale = xScale(healthData, chosenXAxis);
+        xLinearScale = xScale(timesData, chosenXAxis);
 
         // updates x axis with transition
         xAxis = renderAxes(xLinearScale, xAxis);

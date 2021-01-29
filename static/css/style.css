@@ -41,11 +41,11 @@
 }
 
 .x-axis {
-  font-size: 14px;
+  font-size: 12px;
   color: darkblue;
 }
 .tick {
-  font-size: 14px;
+  font-size: 12px;
   color: darkblue;
 }
 
@@ -85,7 +85,6 @@ body {
 .top-bar {
   background: linear-gradient(to right, #4981b3, #ac2615);
   min-height: 0!important;
-  padding: .8rem 0!important;
   height: 1.5rem;
 }
 .middle-bar {

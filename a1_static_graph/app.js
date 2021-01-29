@@ -66,6 +66,18 @@ d3.csv("healthData.csv").then(function(healthData) {
     .attr("fill", "pink")
     .attr("opacity", ".5");
 
+     // append initial abbr
+    var circlesGroup = chartGroup.selectAll()
+    .data(healthData)
+    .enter()
+    .append("text")
+    .attr("x", d => xLinearScale(d.poverty))
+    .attr("y", d => yLinearScale(d.income))
+    .style("font-size", "10px")
+    .attr("text-anchor","middle")
+    .style("fill","black")
+    .text(d => (d.abbr));
+
     // Step 6: Initialize tool tip
     // ==============================
     var toolTip = d3.tip()
