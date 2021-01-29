@@ -141,6 +141,20 @@ d3.csv("healthData.csv").then(function(healthData, err) {
     .attr("opacity", ".5")
     .text(healthData, d => d.abbr);
 
+  var scatterGroup = chartGroup.selectAll()
+    .data(healthData)
+    .enter()
+    .append("text")
+    .attr("x", d => xLinearScale(d.poverty))
+    .attr("y", d => yLinearScale(d.obesity))
+    .style("font-size", "10px")
+    .attr("text-anchor", "middle")
+    .style('fill', 'black')
+    .attr("stroke", "white")
+    .attr("stroke-width", 1)
+    .attr("stroke-opacity", 0.25)
+    .text(d => (d.abbr));
+
 
   // Create group for three x-axis labels
   var labelsGroup = chartGroup.append("g")
@@ -148,21 +162,21 @@ d3.csv("healthData.csv").then(function(healthData, err) {
 
   var povertyLabel = labelsGroup.append("text")
     .attr("x", 0)
-    .attr("y", 11)
+    .attr("y", 13)
     .attr("value", "poverty") // value to grab for event listener
     .classed("active", true)
     .text("in Poverty (%)");
 
   var obesityLabel = labelsGroup.append("text")
     .attr("x", 0)
-    .attr("y", 30)
+    .attr("y", 33)
     .attr("value", "obesity") // value to grab for event listener
     .classed("inactive", true)
     .text("Obese (%)");
     
   var ageLabel = labelsGroup.append("text")
     .attr("x", 0)
-    .attr("y", 47)
+    .attr("y", 50)
     .attr("value", "age") // value to grab for event listener
     .classed("inactive", true)
     .text("Age (Median)");
@@ -170,11 +184,11 @@ d3.csv("healthData.csv").then(function(healthData, err) {
   // append y axis
   chartGroup.append("text")
     .attr("transform", "rotate(-90)")
-    .attr("y", 0 - margin.left + 30)
+    .attr("y", 0 - margin.left + 10)
     .attr("x", 0 - (height / 2))
     .attr("dy", "1em")
     .classed("axis-text", true)
-    .text("Avg Income");
+    .text("Household Income (Median)");
 
   // updateToolTip function above csv import
   var circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
