@@ -63,19 +63,19 @@ function renderCircles(circlesGroup, newXScale, chosenXAxis) {
 // function used for updating circles group with new tooltip
 function updateToolTip(chosenXAxis, circlesGroup) {
 
-  var label;
+  let label;
 
   if (chosenXAxis === "poverty") {
     label = "Poverty (%):";
   }
-  else if (chosenXAxis == "age") {
+  else if (chosenXAxis === "age") {
     label = "Age (Median)"
   }
   else {
     label = "Obese (%):";
   }
 
-  var toolTip = d3.tip()
+  let toolTip = d3.tip()
     .attr("class", "tooltip")
     .offset([80, -60])
     .html(function(d) {
@@ -99,7 +99,8 @@ function updateToolTip(chosenXAxis, circlesGroup) {
 d3.csv("healthData.csv").then(function(healthData, err) {
   if (err) throw err;
 
-  // parse data
+  // Step 1: Parse Data/Cast as numbers
+  // ===================================
   healthData.forEach(function(data) {
     data.poverty = +data.poverty;
     data.income = +data.income;
@@ -107,6 +108,8 @@ d3.csv("healthData.csv").then(function(healthData, err) {
     data.age = +data.age;
   });
 
+  // Step 2: Create scale functions
+  // ==================================
   // xLinearScale function above csv import
   var xLinearScale = xScale(healthData, chosenXAxis);
 
@@ -115,10 +118,14 @@ d3.csv("healthData.csv").then(function(healthData, err) {
     .domain([35000, d3.max(healthData, d => d.income)])
     .range([height, 0]);
 
+  // Step 3: Create axis functions
+  // ==============================
   // Create initial axis functions
   var bottomAxis = d3.axisBottom(xLinearScale);
   var leftAxis = d3.axisLeft(yLinearScale);
 
+  // Step 4: Append Axes to the chart
+  // =================================
   // append x axis
   var xAxis = chartGroup.append("g")
     .classed("x-axis", true)
@@ -129,6 +136,8 @@ d3.csv("healthData.csv").then(function(healthData, err) {
   chartGroup.append("g")
     .call(leftAxis);
 
+  // Step 5: Create Circles
+  // ====================================
   // append initial circles
   var circlesGroup = chartGroup.selectAll("circle")
     .data(healthData)
@@ -140,21 +149,6 @@ d3.csv("healthData.csv").then(function(healthData, err) {
     .attr("fill", "blue")
     .attr("opacity", ".5")
     .text(healthData, d => d.abbr);
-
-  var scatterGroup = chartGroup.selectAll()
-    .data(healthData)
-    .enter()
-    .append("text")
-    .attr("x", d => xLinearScale(d.poverty))
-    .attr("y", d => yLinearScale(d.obesity))
-    .style("font-size", "10px")
-    .attr("text-anchor", "middle")
-    .style('fill', 'black')
-    .attr("stroke", "white")
-    .attr("stroke-width", 1)
-    .attr("stroke-opacity", 0.25)
-    .text(d => (d.abbr));
-
 
   // Create group for three x-axis labels
   var labelsGroup = chartGroup.append("g")
@@ -193,6 +187,8 @@ d3.csv("healthData.csv").then(function(healthData, err) {
   // updateToolTip function above csv import
   var circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
 
+  // Step 8: Create event listeners to display and hide the tooltip
+  // ==============================
   // x axis labels event listener
   labelsGroup.selectAll("text")
     .on("click", function() {
