@@ -49,6 +49,17 @@
   color: darkblue;
 }
 
+#scatter {
+  padding-left: 20px;
+}
+#static {
+  padding-left: 80px;
+  padding-top: 50px;
+}
+#chart{
+  width: 100px!important;
+
+}
 /*-- Body Reset --*/
 body {
   overflow-x: hidden;
@@ -84,8 +95,8 @@ body {
 /*============= TOP/MIDDLE BAR HEADER =============*/
 .top-bar {
   background: linear-gradient(to right, #4981b3, #ac2615);
-  min-height: 0!important;
   height: 1.5rem;
+  padding-bottom: 0;
 }
 .middle-bar {
   background: linear-gradient(to right, #4981b3, #ac2615);

@@ -15,7 +15,7 @@
 </head>
 
 <body>
-		<!-- Navigation -->
+	<!-- Initiate Navbar -->
 	<nav class="navbar bg-light navbar-light navbar-expand-lg">
 		<div class="container">
 			<img src="img/logo.png" 
@@ -48,31 +48,34 @@
 	</div>
 
 	<!-- End Dision  -->
-	
-	<!-- Main Page Heading -->
+
+
+	<!-- Two Column Section -->
+
 	<div class="container">
-		<div class="row">
-			<div class="col-12 text-center mt-4">
-				<p>This is an interact graph, click on "labels" and "dots" to see more.</p>
+		<div class="row my-3">
+
+			<div class="col-md-4 text-left">
+				<h4 class="my-4" style="color: black;">Background</h4>
+				<p> We've been tasked with finding trends that shape peoples's lives based on information from the U.S. Census Bureau
+					and the Behavioral Risk Factor Surveillance System. We worked with a 2014 ACS 1-year estimates dataset,
+					which includes data on income rates, obesity, poverty, etc. by state.</p>
+					<br>
+				<p>Below you will find an interactive chart that allows you to swicth between labels to discover valuable
+					information about the indicators. We have also added some trends and insights regarding this data set for 
+					its better use. </p>
+			</div>
+
+			<div class="col-md-5">
+				<!--<img id="static" src="/img/static.png" alt="static plot" width="800" height="450">	-->
+				<div id="chart" style="width: 100px;"> </div>	
 			</div>
 		</div>
 	</div>
-	
-	<!-- End Page Heading -->
 
-	<!-- Start One Column Section -->
-	<div class="container my-2">
-		<div class="row">
-			<div class="col-md-12 justify-content-center">
-			  <div id="scatter">
-			  </div>
-			</div>
-		  </div>
-	</div>
+	<!-- End Two Column Section -->
 
-	<!-- End One Column Section -->
-
-	<!-- Division Bar-->
+	<!-- Division Top Bar-->
 	<div class="middle-bar">
 		<div class="container">
 			<div class="col-12">
@@ -82,51 +85,123 @@
 
 	<!-- End Dision  -->
 
+	<!-- Main Page -->
+	<div class="container">
+		<div class="row">
+			<div class="col-5 text-left mt-4">
+				<h4 class="my-4" style="color: black;"><strong>Observable trends:</strong></h4>
+			</div>
+			<div class="col-7 text-center mt-4">
+				<p>This is an interact graph, click on "labels" and "dots" to see more.</p>
+			</div>
+		</div>
+	</div>
+	
+	<!-- End Page -->
+
+	<!-- Main Page Content -->
+	<div class="container my-2">
+		<div class="row">
+			<div class="col-3 text-left ">
+				<p style="font-size: 16px;"><strong>Lack of Healthcare VS Age, Obesity and Poverty:</strong>  the data show that the age group between 36-40 years old is the one who most 
+					lacks healthcare. Although there are outliers in the data, we can see the positive relationship between these indicators. 
+					Regarding obesity, there is a strong relation between the lack of healthcare and obesity. The higher the obesity rate, the higher the lack of
+					healthcare. Comparing poverty and lack of healthcare rates, we can also see that they are closely related. </p>	
+			</div>
+			<div class="col-md-9">
+			  <div id="scatter">
+			  </div>
+			</div>
+
+			<div class="row">
+				<div class="col-12 text-left my-5">		
+					<p style="font-size: 16px;"><strong>Income VS Age, Obesity and Poverty:</strong>  the data show that the age group between 36-40 years old is the one who most 
+						lacks healthcare. Although there are outliers in the data, we can see the positive relationship between these indicators. 
+						Regarding obesity, there is a strong relation between the lack of healthcare and obesity. The higher the obesity rate, the higher the lack of
+						healthcare. Comparing poverty and lack of healthcare rates, we can also see that they are closely related. </p>
+					
+					<p style="font-size: 16px;"><strong>Income VS Age, Obesity and Poverty:</strong>  the data show that the age group between 36-40 years old is the one who most 
+						lacks healthcare. Although there are outliers in the data, we can see the positive relationship between these indicators. 
+						Regarding obesity, there is a strong relation between the lack of healthcare and obesity. The higher the obesity rate, the higher the lack of
+						healthcare. Comparing poverty and lack of healthcare rates, we can also see that they are closely related. </p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Main Page Content -->
+	<!-- Division Top Bar-->
+	<div class="middle-bar">
+		<div class="container">
+			<div class="col-12">
+			</div>
+		</div>
+	</div>
+
+	<!-- End Dision  -->
+	
 	<!-- Main Page Heading -->
-	<div class="col-12 text-center mt-4">
+	<div class="col-12 bg-light text-center">
 		<h1 class="text-dark pt-4"> Data-Driven "Discovery"</h1>
 		<div class="border-top border-primary w-50 mx-auto my-3"></div>
 		<p class="lead">Analyzing the current trends shaping people's lives</p>
 	</div>
-	<!-- End Page Heading -->
+	<!-- End Page Heading -->	
 
-	<!-- Three Column Section -->
+<!-- Two Column Section -->
 
-	<div class="container-fluid">
-		<div class="row bg-light my-5">
+<div class="container">
+	
+	<div class="row my-3 text-center">
+		<div class="col-md-4 my-4">
+			<img src="img/healthXage.png" alt="" class="w-100">
+			<h5 class="my-4">Lacks Healthcare Vs. Age</h5>
+		</div>
 
-			<div class="col-md-4 text-center my-4">
-				<img src="img/poverty.png" alt="" width="400px" height="250px">
-				<h4 class="my-4" style="color: black;">Income <strong>Vs.</strong> Poverty</h4>
-				<p>Use this adjective amazing to describe....ext messages are used for personal, 
-					family, business and social purposes. Governmental and non-governmental organizations
-					 use text messaging for communication between colleagues...</p>
-				
-			</div>
+		<div class="col-md-4 my-4">
+			<img src="img/healthXobese.png" alt="" class="w-100">
+			<h5 class="my-4"> Lacks Healthcare vs. Obesity</h5>
+		</div>
 
-			<div class="col-md-4 text-center my-4">
-				<img src="img/obesity.png" alt="" width="400px" height="250px">
-				<h4 class="my-4" style="color: black;">Income <strong>Vs.</strong> Obesity </h4>
-				<p>Use this adjective amazing to describe....ext messages are used for personal, 
-					family, business and social purposes. Governmental and non-governmental organizations
-					 use text messaging for communication between colleagues...</p>
-				
-			</div>
-
-			<div class="col-md-4 text-center my-4">
-				<img src="img/age.png" alt="" width="400px" height="250px">
-				<h4 class="my-4" style="color: black;">Income <strong>Vs.</strong> Age</h4>
-				<p>Use this adjective amazing to describe....ext messages are used for personal, 
-					family, business and social purposes. Governmental and non-governmental organizations
-					 use text messaging for communication between colleagues...</p>
-				
-			</div>
-
-
+		<div class="col-md-4 my-4">
+			<img src="img/healthXpov.png" alt="" class="w-100">
+			<h5 class="my-4">Lacks Healthcare Vs. Poverty</h5>
 		</div>
 	</div>
+	<div class="row my-3 text-center">
+		<div class="col-md-4 my-4">
+			<img src="img/incomeXage.png" alt="" class="w-100">
+			<h5 class="my-4">Income Vs. Age</h5>
+		</div>
 
-	<!-- End Three Column Section -->
+		<div class="col-md-4 my-4">
+			<img src="img/incomeXobese.png" alt="" class="w-100">
+			<h5 class="my-4">Income vs. Obesity</h5>
+		</div>
+
+		<div class="col-md-4 my-4">
+			<img src="img/incomeXpoverty.png" alt="" class="w-100">
+			<h5 class="my-4">Income Vs. Poverty</h5>
+		</div>
+	</div>
+	<div class="row my-3 text-center">
+		<div class="col-md-4 my-4">
+			<img src="img/smokesXage.png" alt="" class="w-100">
+			<h5 class="my-4">Smokes Vs. Age</h5>
+		</div>
+
+		<div class="col-md-4 my-4">
+			<img src="img/smokesXobese.png" alt="" class="w-100">
+			<h5 class="my-4">Smokes vs. Obesity</h5>
+		</div>
+
+		<div class="col-md-4 my-4">
+			<img src="img/smokesXpoverty.png" alt="" class="w-100">
+			<h5 class="my-4">Smokes Vs. Poverty</h4>
+		</div>
+	</div>
+</div>
+
+<!-- End Two Column Section -->
 	
 	<!-- Start Jumbotron -->
 	<div class="jumbotron py-5 mb-0">
@@ -156,6 +231,12 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	<script src="https://d3js.org/d3.v5.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+	
+	<script type="text/javascript" src="./static/js/app.js"></script>
+
 	<script type="text/javascript" src="./static/js/app2.js"></script>
+
+	
+	
 </body>
 </html>
