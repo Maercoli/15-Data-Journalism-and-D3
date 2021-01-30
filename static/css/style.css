@@ -14,7 +14,7 @@
 }
 
 .axis-text {
-  font-size: 14px;
+  font-size: 10px;
   font-weight: bold;
   fill: darkblue;
   text-anchor: middle;
@@ -56,10 +56,7 @@
   padding-left: 80px;
   padding-top: 50px;
 }
-#chart{
-  width: 100px!important;
 
-}
 /*-- Body Reset --*/
 body {
   overflow-x: hidden;
