@@ -12,7 +12,7 @@ The data set included with the assignment is based on 2014 ACS 1-year estimates 
 
 ## My First Task
 
-![4-scatter](Images/static.jpg)
+![static](Images/static.png)
 
 I created a static scatter plot between `Household Income vs. Poverty`.
 
@@ -28,9 +28,8 @@ I included more demographics and more risk factors. I placed additional labels i
 
 #### 2. Incorporate d3-tip
 
-While the ticks on the axes allow us to infer approximate values for each circle, it's impossible to determine the true value without adding another layer of data. Therefore, I entered tooltips: these allow users to check specific element's data when they hover their cursor over the element.
+While the ticks on the axes allow us to infer approximate values for each circle, it's impossible to determine the true value without adding another layer of data. Therefore, I entered tooltips: these allow users to check specific element's data when they hover their cursor over the element. Example:
 
-Example:
 ![8-tooltip](Images/8-tooltip.gif)
 
 - - -
