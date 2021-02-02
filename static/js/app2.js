@@ -95,6 +95,7 @@ function renderYCircles(circlesGroup, newYScale, chosenYAxis) {
   return circlesGroup;
 }
 
+
 // function used for updating X circles group with new tooltip
 function updateToolTip(chosenXAxis, circlesGroup) {
 
@@ -165,7 +166,7 @@ function updateYToolTip(chosenYAxis, circlesGroup) {
   return circlesGroup;
 }
 // Retrieve data from the CSV file and execute everything below
-d3.csv("/assets/data/timesData.csv").then(function(timesData, err) {
+d3.csv("/D3-challenge/assets/data/timesData.csv").then(function(timesData, err) {
   if (err) throw err;
 
   // parse data
