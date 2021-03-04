@@ -33,5 +33,6 @@ While the ticks on the axes allow us to infer approximate values for each circle
 ![8-tooltip](Images/8-tooltip.gif)
 
 - - -
-
+Contact info:
+maercoli2017@gmail.com
 
